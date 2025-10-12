@@ -1,0 +1,42 @@
+Setting top to                           : /workspaces/codespaces-pebble/myfirstproject 
+Setting out to                           : /workspaces/codespaces-pebble/myfirstproject/build 
+Checking for program webpack             : /home/vscode/.pebble-sdk/SDKs/current/node_modules/.bin/webpack 
+WARNING: enableMultiJS is not enabled for this project. message_keys.json will not be included in your project unless you add it to your pebble-js-app.js file. 
+Found Pebble SDK for emery in:           : /home/vscode/.pebble-sdk/SDKs/current/sdk-core/pebble/emery 
+Checking for program gcc,cc              : arm-none-eabi-gcc 
+Checking for program ar                  : arm-none-eabi-ar 
+'configure' finished successfully (0.093s)
+Waf: Entering directory `/workspaces/codespaces-pebble/myfirstproject/build'
+[ 1/29] message_key_header:  -> build/include/message_keys.auto.h
+[ 2/29] message_key_definitions:  -> build/src/message_keys.auto.c
+[ 3/29] message_key_json:  -> build/js/message_keys.json
+[ 4/29] emery | subst: ../../../home/vscode/.pebble-sdk/SDKs/current/sdk-core/pebble/common/pebble_app.ld.template -> build/emery/pebble_app.ld.auto
+[ 5/29] emery | appinfo.auto.c:  -> build/emery/appinfo.auto.c
+[ 6/29] emery | appinfo.json:  -> build/appinfo.json
+[ 7/29] emery | reso: resources/images/flower1_outline.png -> build/emery/resources/images/flower1_outline.png.FLOWER1_OUTLINE.reso
+[ 8/29] emery | reso: resources/images/flower1_fill.png -> build/emery/resources/images/flower1_fill.png.FLOWER1_FILL.reso
+[ 9/29] emery | reso: resources/images/flower2_outline.png -> build/emery/resources/images/flower2_outline.png.FLOWER2_OUTLINE.reso
+[10/29] emery | reso: resources/images/flower2_fill.png -> build/emery/resources/images/flower2_fill.png.FLOWER2_FILL.reso
+[11/29] emery | reso: resources/images/flower3_outline.png -> build/emery/resources/images/flower3_outline.png.FLOWER3_OUTLINE.reso
+[12/29] emery | reso: resources/images/flower3_fill.png -> build/emery/resources/images/flower3_fill.png.FLOWER3_FILL.reso
+[13/29] emery | reso: resources/images/flower4_outline.png -> build/emery/resources/images/flower4_outline.png.FLOWER4_OUTLINE.reso
+[14/29] emery | reso: resources/images/flower4_fill.png -> build/emery/resources/images/flower4_fill.png.FLOWER4_FILL.reso
+[15/29] emery | reso: resources/images/flower5_outline.png -> build/emery/resources/images/flower5_outline.png.FLOWER5_OUTLINE.reso
+[16/29] emery | reso: resources/images/flower5_fill.png -> build/emery/resources/images/flower5_fill.png.FLOWER5_FILL.reso
+[17/29] emery | c: build/src/message_keys.auto.c -> build/src/message_keys.auto.c.9.o
+[18/29] emery | resource_ball: build/emery/resources/images/flower1_outline.png.FLOWER1_OUTLINE.reso build/emery/resources/images/flower1_fill.png.FLOWER1_FILL.reso build/emery/resources/images/flower2_outline.png.FLOWER2_OUTLINE.reso build/emery/resources/images/flower2_fill.png.FLOWER2_FILL.reso build/emery/resources/images/flower3_outline.png.FLOWER3_OUTLINE.reso build/emery/resources/images/flower3_fill.png.FLOWER3_FILL.reso build/emery/resources/images/flower4_outline.png.FLOWER4_OUTLINE.reso build/emery/resources/images/flower4_fill.png.FLOWER4_FILL.reso build/emery/resources/images/flower5_outline.png.FLOWER5_OUTLINE.reso build/emery/resources/images/flower5_fill.png.FLOWER5_FILL.reso -> build/emery/system_resources.resball
+[19/29] emery | generate_resource_id_definitions: build/emery/system_resources.resball -> build/emery/src/resource_ids.auto.c
+[20/29] emery | generate_resource_id_header: build/emery/system_resources.resball -> build/emery/src/resource_ids.auto.h
+[21/29] emery | generate_pbpack: build/emery/system_resources.resball -> build/emery/app_resources.pbpack
+[22/29] emery | c: build/emery/src/resource_ids.auto.c -> build/emery/src/resource_ids.auto.c.9.o
+[23/29] emery | c: build/emery/appinfo.auto.c -> build/emery/appinfo.auto.c.9.o
+[24/29] emery | c: src/c/myfirstproject.c -> build/src/c/myfirstproject.c.9.o
+../src/c/myfirstproject.c: In function 'rects_intersect_padded':
+../src/c/myfirstproject.c:73:3: error: implicit declaration of function 'grect_intersects' [-Werror=implicit-function-declaration]
+cc1: all warnings being treated as errors
+Waf: Leaving directory `/workspaces/codespaces-pebble/myfirstproject/build'
+Build failed
+ -> task in 'emery/pebble-app.elf' failed (exit status 1): 
+	{task 140492951957632: c myfirstproject.c -> myfirstproject.c.9.o}
+['arm-none-eabi-gcc', '-std=c99', '-mcpu=cortex-m3', '-mthumb', '-ffunction-sections', '-fdata-sections', '-g', '-fPIE', '-Os', '-D_TIME_H_', '-Wall', '-Wextra', '-Werror', '-Wno-unused-parameter', '-Wno-error=unused-function', '-Wno-error=unused-variable', '-I/home/vscode/.pebble-sdk/SDKs/current/sdk-core/pebble/emery/include', '-I/workspaces/codespaces-pebble/myfirstproject/build', '-I/workspaces/codespaces-pebble/myfirstproject', '-I/workspaces/codespaces-pebble/myfirstproject/build/include', '-I/workspaces/codespaces-pebble/myfirstproject/include', '-I/workspaces/codespaces-pebble/myfirstproject/build/src', '-I/workspaces/codespaces-pebble/myfirstproject/src', '-I/workspaces/codespaces-pebble/myfirstproject/build/emery', '-I/workspaces/codespaces-pebble/myfirstproject/emery', '-DRELEASE', '-DPBL_PLATFORM_EMERY', '-DPBL_COLOR', '-DPBL_RECT', '-DPBL_MICROPHONE', '-DPBL_SMARTSTRAP', '-DPBL_HEALTH', '-DPBL_SMARTSTRAP_POWER', '-DPBL_COMPASS', '-DPBL_DISPLAY_WIDTH=200', '-DPBL_DISPLAY_HEIGHT=228', '-DPBL_SDK_3', '-D__FILE_NAME__="myfirstproject.c"', '../src/c/myfirstproject.c', '-c', '-o', 'src/c/myfirstproject.c.9.o']
+Build failed.

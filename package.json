@@ -1,0 +1,30 @@
+{
+  "uuid": "7b8d3a8c-4b5d-4f47-8e7a-30caa81fb914",
+  "shortName": "UnityBloom",
+  "longName": "Unity Bloom Watchface",
+  "companyName": "Chloe Espy",
+  "versionLabel": "1.0",
+  "sdkVersion": "3",
+  "watchapp": { "watchface": true },
+  "targetPlatforms": ["emery"],
+  "capabilities": ["location"],
+  "appKeys": { "TEMP": 1, "UVI": 2 },
+  "resources": {
+    "media": [
+      { "type": "png", "name": "FLOWER1_OUTLINE", "file": "images/flower1_outline.png" },
+      { "type": "png", "name": "FLOWER1_FILL",    "file": "images/flower1_fill.png" },
+
+      { "type": "png", "name": "FLOWER2_OUTLINE", "file": "images/flower2_outline.png" },
+      { "type": "png", "name": "FLOWER2_FILL",    "file": "images/flower2_fill.png" },
+
+      { "type": "png", "name": "FLOWER3_OUTLINE", "file": "images/flower3_outline.png" },
+      { "type": "png", "name": "FLOWER3_FILL",    "file": "images/flower3_fill.png" },
+
+      { "type": "png", "name": "FLOWER4_OUTLINE", "file": "images/flower4_outline.png" },
+      { "type": "png", "name": "FLOWER4_FILL",    "file": "images/flower4_fill.png" },
+
+      { "type": "png", "name": "FLOWER5_OUTLINE", "file": "images/flower5_outline.png" },
+      { "type": "png", "name": "FLOWER5_FILL",    "file": "images/flower5_fill.png" }
+    ]
+  }
+}
