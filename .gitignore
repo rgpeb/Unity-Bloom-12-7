@@ -1,3 +1,5 @@
 build/
 *.pbw
 .waf*
+build/.lock-waf_linux_build
+.lock-waf_linux_build
