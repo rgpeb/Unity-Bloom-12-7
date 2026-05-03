@@ -459,8 +459,10 @@ static void refresh_time_date(void){
 
   text_layer_set_text(s_time_layer, s_time_buf);
 
+  static char s_date_prefix[12];
   static char s_date_buf[16];
-  strftime(s_date_buf, sizeof(s_date_buf), "%a, %b %e", t);
+  strftime(s_date_prefix, sizeof(s_date_prefix), "%a, %b", t);
+  snprintf(s_date_buf, sizeof(s_date_buf), "%s %d", s_date_prefix, t->tm_mday);
   text_layer_set_text(s_date_layer, s_date_buf);
 }
 
@@ -495,12 +497,12 @@ static void main_window_load(Window *window){
   const int date_h = 30;
   const int time_h = 62;
   const int info_h = 34;
-  const int block_gap = compact_layout ? 7 : 10;
+  const int text_gap = compact_layout ? 7 : 10;
   const int text_y_offset = compact_layout ? -12 : 0;
 
-  const int date_y = text_center_y - (date_h + block_gap + time_h + block_gap + info_h) / 2 + text_y_offset;
-  const int time_y = date_y + date_h + block_gap;
-  const int info_y = time_y + time_h + block_gap;
+  const int date_y = text_center_y - (date_h + text_gap + time_h + text_gap + info_h) / 2 + text_y_offset;
+  const int time_y = date_y + date_h + text_gap;
+  const int info_y = time_y + time_h + text_gap;
 
   s_date_layer = text_layer_create(GRect(0, date_y, s_bounds.size.w, date_h));
   text_layer_set_background_color(s_date_layer, GColorClear);
