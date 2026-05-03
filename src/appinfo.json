@@ -5,42 +5,132 @@
   "companyName": "Chloe Espy",
   "versionLabel": "1.0",
   "sdkVersion": "3",
-  "watchapp": { "watchface": true },
-  "targetPlatforms": ["emery"],
-  "capabilities": ["location"],
-  "appKeys": { "TEMP": 1, "UVI": 2 },
+  "watchapp": {
+    "watchface": true
+  },
+  "targetPlatforms": [
+    "aplite",
+    "basalt",
+    "chalk",
+    "diorite",
+    "emery",
+    "gabbro"
+  ],
+  "capabilities": [
+    "location"
+  ],
+  "appKeys": {
+    "TEMP": 1,
+    "UVI": 2,
+    "TIME24": 3
+  },
   "resources": {
     "media": [
-      { "type": "png", "name": "FLOWER1_OUTLINE",  "file": "images/flower1_outline.png" },
-      { "type": "png", "name": "FLOWER1_FILL",     "file": "images/flower1_fill.png" },
-
-      { "type": "png", "name": "FLOWER2_OUTLINE",  "file": "images/flower2_outline.png" },
-      { "type": "png", "name": "FLOWER2_FILL",     "file": "images/flower2_fill.png" },
-
-      { "type": "png", "name": "FLOWER3_OUTLINE",  "file": "images/flower3_outline.png" },
-      { "type": "png", "name": "FLOWER3_FILL",     "file": "images/flower3_fill.png" },
-
-      { "type": "png", "name": "FLOWER4_OUTLINE",  "file": "images/flower4_outline.png" },
-      { "type": "png", "name": "FLOWER4_FILL",     "file": "images/flower4_fill.png" },
-
-      { "type": "png", "name": "FLOWER5_OUTLINE",  "file": "images/flower5_outline.png" },
-      { "type": "png", "name": "FLOWER5_FILL",     "file": "images/flower5_fill.png" },
-
-      { "type": "png", "name": "FLOWER6_OUTLINE",  "file": "images/flower6_outline.png" },
-      { "type": "png", "name": "FLOWER6_FILL",     "file": "images/flower6_fill.png" },
-
-      { "type": "png", "name": "FLOWER7_OUTLINE",  "file": "images/flower7_outline.png" },
-      { "type": "png", "name": "FLOWER7_FILL",     "file": "images/flower7_fill.png" },
-
-      { "type": "png", "name": "FLOWER8_OUTLINE",  "file": "images/flower8_outline.png" },
-      { "type": "png", "name": "FLOWER8_FILL",     "file": "images/flower8_fill.png" },
-
-      { "type": "png", "name": "FLOWER9_OUTLINE",  "file": "images/flower9_outline.png" },
-      { "type": "png", "name": "FLOWER9_FILL",     "file": "images/flower9_fill.png" },
-
-      { "type": "png", "name": "FLOWER10_OUTLINE", "file": "images/flower10_outline.png" },
-      { "type": "png", "name": "FLOWER10_FILL",    "file": "images/flower10_fill.png" }
+      {
+        "type": "png",
+        "name": "FLOWER1_OUTLINE",
+        "file": "images/flower1_outline.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER1_FILL",
+        "file": "images/flower1_fill.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER2_OUTLINE",
+        "file": "images/flower2_outline.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER2_FILL",
+        "file": "images/flower2_fill.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER3_OUTLINE",
+        "file": "images/flower3_outline.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER3_FILL",
+        "file": "images/flower3_fill.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER4_OUTLINE",
+        "file": "images/flower4_outline.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER4_FILL",
+        "file": "images/flower4_fill.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER5_OUTLINE",
+        "file": "images/flower5_outline.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER5_FILL",
+        "file": "images/flower5_fill.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER6_OUTLINE",
+        "file": "images/flower6_outline.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER6_FILL",
+        "file": "images/flower6_fill.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER7_OUTLINE",
+        "file": "images/flower7_outline.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER7_FILL",
+        "file": "images/flower7_fill.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER8_OUTLINE",
+        "file": "images/flower8_outline.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER8_FILL",
+        "file": "images/flower8_fill.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER9_OUTLINE",
+        "file": "images/flower9_outline.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER9_FILL",
+        "file": "images/flower9_fill.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER10_OUTLINE",
+        "file": "images/flower10_outline.png"
+      },
+      {
+        "type": "png",
+        "name": "FLOWER10_FILL",
+        "file": "images/flower10_fill.png"
+      }
     ]
   },
-  "messageKeys": { "TEMP": 1, "UVI": 2 }
+  "messageKeys": {
+    "TEMP": 1,
+    "UVI": 2,
+    "TIME24": 3
+  }
 }
