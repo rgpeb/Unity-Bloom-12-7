@@ -498,24 +498,36 @@ static void main_window_load(Window *window){
   layer_set_update_proc(s_canvas, layer_update);
   layer_add_child(root, s_canvas);
 
-  s_date_layer = text_layer_create(GRect(0, s_bounds.size.h/2 - 60, s_bounds.size.w, 34));
+  const bool compact_layout = (s_bounds.size.w <= 144 && s_bounds.size.h <= 168); // Pebble Quick View-safe
+  const int text_center_y = s_bounds.size.h / 2;
+  const int date_h = 38;
+  const int time_h = 58;
+  const int info_h = 38;
+  const int block_gap = compact_layout ? 7 : 10;
+  const int text_y_offset = compact_layout ? -12 : 0;
+
+  const int date_y = text_center_y - (date_h + block_gap + time_h + block_gap + info_h) / 2 + text_y_offset;
+  const int time_y = date_y + date_h + block_gap;
+  const int info_y = time_y + time_h + block_gap;
+
+  s_date_layer = text_layer_create(GRect(0, date_y, s_bounds.size.w, date_h));
   text_layer_set_background_color(s_date_layer, GColorClear);
   text_layer_set_text_color(s_date_layer, GColorWhite);
-  text_layer_set_font(s_date_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
+  text_layer_set_font(s_date_layer, fonts_get_system_font(FONT_KEY_BITHAM_30_BLACK));
   text_layer_set_text_alignment(s_date_layer, GTextAlignmentCenter);
   layer_add_child(root, text_layer_get_layer(s_date_layer));
 
-  s_time_layer = text_layer_create(GRect(0, s_bounds.size.h/2 - 28, s_bounds.size.w, 52));
+  s_time_layer = text_layer_create(GRect(0, time_y, s_bounds.size.w, time_h));
   text_layer_set_background_color(s_time_layer, GColorClear);
   text_layer_set_text_color(s_time_layer, GColorWhite);
   text_layer_set_font(s_time_layer, fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
   layer_add_child(root, text_layer_get_layer(s_time_layer));
 
-  s_info_layer = text_layer_create(GRect(0, s_bounds.size.h/2 + 42, s_bounds.size.w, 30));
+  s_info_layer = text_layer_create(GRect(0, info_y, s_bounds.size.w, info_h));
   text_layer_set_background_color(s_info_layer, GColorClear);
   text_layer_set_text_color(s_info_layer, GColorWhite);
-  text_layer_set_font(s_info_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
+  text_layer_set_font(s_info_layer, fonts_get_system_font(FONT_KEY_BITHAM_30_BLACK));
   text_layer_set_text_alignment(s_info_layer, GTextAlignmentCenter);
   text_layer_set_text(s_info_layer, "—°  UV —");
   layer_add_child(root, text_layer_get_layer(s_info_layer));
