@@ -497,13 +497,12 @@ static void main_window_load(Window *window){
   const int date_h = 30;
   const int time_h = 62;
   const int info_h = 34;
-  const int gap_date_time = compact_layout ? 7 : 10;
-  const int gap_time_info = compact_layout ? 4 : 6;
+  const int text_gap = compact_layout ? 7 : 10;
   const int text_y_offset = compact_layout ? -12 : 0;
 
-  const int date_y = text_center_y - (date_h + gap_date_time + time_h + gap_time_info + info_h) / 2 + text_y_offset;
-  const int time_y = date_y + date_h + gap_date_time;
-  const int info_y = time_y + time_h + gap_time_info;
+  const int date_y = text_center_y - (date_h + text_gap + time_h + text_gap + info_h) / 2 + text_y_offset;
+  const int time_y = date_y + date_h + text_gap;
+  const int info_y = time_y + time_h + text_gap;
 
   s_date_layer = text_layer_create(GRect(0, date_y, s_bounds.size.w, date_h));
   text_layer_set_background_color(s_date_layer, GColorClear);
