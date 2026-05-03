@@ -499,6 +499,7 @@ static void main_window_load(Window *window){
   const int info_h = 30;
   const int text_gap = compact_layout ? 7 : 10;
   const int text_y_offset = compact_layout ? -12 : 0;
+  const int info_optical_nudge = compact_layout ? -2 : -3; // pull weather up to match perceived gap
 
   const int date_y = text_center_y - (date_h + text_gap + time_h + text_gap + info_h) / 2 + text_y_offset;
   const int time_y = date_y + date_h + text_gap;
