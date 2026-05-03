@@ -59,8 +59,6 @@ static int    s_placed_count = 0;
 static GRect  s_bounds;
 
 static AppTimer *s_off_timer = NULL;
-static bool s_use_24h = false;
-#define PERSIST_KEY_USE_24H  100
 
 /*** “no-repeat” memory ***/
 static GRect s_prev_frames[TARGET_SPRITES];
@@ -447,7 +445,7 @@ static void refresh_time_date(void){
 
   static char s_time_buf[8];
 
-  if (s_use_24h) {
+  if (clock_is_24h_style()) {
     // 24h, space-padded hour (e.g., " 9:05")
     strftime(s_time_buf, sizeof(s_time_buf), "%k:%M", t);
   } else {
@@ -475,14 +473,8 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed){
 static void inbox_received_cb(DictionaryIterator *iter, void *ctx) {
   Tuple *t_temp = dict_find(iter, MESSAGE_KEY_TEMP);
   Tuple *t_uvi  = dict_find(iter, MESSAGE_KEY_UVI);
-  Tuple *t_time24 = dict_find(iter, MESSAGE_KEY_TIME24);
   if(t_temp) snprintf(s_temp_buf, sizeof(s_temp_buf), "%ld", t_temp->value->int32);
   if(t_uvi)  snprintf(s_uvi_buf,  sizeof(s_uvi_buf),  "%ld", t_uvi->value->int32);
-  if(t_time24){
-    s_use_24h = t_time24->value->int32 ? true : false;
-    persist_write_bool(PERSIST_KEY_USE_24H, s_use_24h);
-    refresh_time_date();
-  }
   refresh_info_line();
 }
 static void inbox_dropped_cb(AppMessageResult reason, void *ctx) { (void)reason;(void)ctx; }
@@ -500,9 +492,9 @@ static void main_window_load(Window *window){
 
   const bool compact_layout = (s_bounds.size.w <= 144 && s_bounds.size.h <= 168); // Pebble Quick View-safe
   const int text_center_y = s_bounds.size.h / 2;
-  const int date_h = 38;
+  const int date_h = 30;
   const int time_h = 58;
-  const int info_h = 38;
+  const int info_h = 30;
   const int block_gap = compact_layout ? 7 : 10;
   const int text_y_offset = compact_layout ? -12 : 0;
 
@@ -513,7 +505,7 @@ static void main_window_load(Window *window){
   s_date_layer = text_layer_create(GRect(0, date_y, s_bounds.size.w, date_h));
   text_layer_set_background_color(s_date_layer, GColorClear);
   text_layer_set_text_color(s_date_layer, GColorWhite);
-  text_layer_set_font(s_date_layer, fonts_get_system_font(FONT_KEY_BITHAM_30_BLACK));
+  text_layer_set_font(s_date_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
   text_layer_set_text_alignment(s_date_layer, GTextAlignmentCenter);
   layer_add_child(root, text_layer_get_layer(s_date_layer));
 
@@ -527,7 +519,7 @@ static void main_window_load(Window *window){
   s_info_layer = text_layer_create(GRect(0, info_y, s_bounds.size.w, info_h));
   text_layer_set_background_color(s_info_layer, GColorClear);
   text_layer_set_text_color(s_info_layer, GColorWhite);
-  text_layer_set_font(s_info_layer, fonts_get_system_font(FONT_KEY_BITHAM_30_BLACK));
+  text_layer_set_font(s_info_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
   text_layer_set_text_alignment(s_info_layer, GTextAlignmentCenter);
   text_layer_set_text(s_info_layer, "—°  UV —");
   layer_add_child(root, text_layer_get_layer(s_info_layer));
@@ -554,7 +546,6 @@ static void main_window_unload(Window *window){
 static void init(void){
   s_main_window = window_create();
   window_set_background_color(s_main_window, GColorBlack);
-  s_use_24h = persist_exists(PERSIST_KEY_USE_24H) ? persist_read_bool(PERSIST_KEY_USE_24H) : clock_is_24h_style();
   window_set_window_handlers(s_main_window, (WindowHandlers){ .load = main_window_load, .unload = main_window_unload });
   window_stack_push(s_main_window, true);
 
