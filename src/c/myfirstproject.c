@@ -496,7 +496,7 @@ static void main_window_load(Window *window){
   const int text_center_y = s_bounds.size.h / 2;
   const int date_h = 30;
   const int time_h = 62;
-  const int info_h = 34;
+  const int info_h = 30;
   const int text_gap = compact_layout ? 7 : 10;
   const int text_y_offset = compact_layout ? -12 : 0;
 
