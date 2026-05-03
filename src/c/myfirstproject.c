@@ -143,7 +143,7 @@ static bool rects_intersect_padded(GRect a, GRect b, int pad){
 /*** Info line ***/
 static void refresh_info_line(void) {
   static char line[24];
-  snprintf(line, sizeof(line), "%s°  UV %s", s_temp_buf, s_uvi_buf);
+  snprintf(line, sizeof(line), "%s°, UV %s", s_temp_buf, s_uvi_buf);
   text_layer_set_text(s_info_layer, line);
 }
 
@@ -493,8 +493,8 @@ static void main_window_load(Window *window){
   const bool compact_layout = (s_bounds.size.w <= 144 && s_bounds.size.h <= 168); // Pebble Quick View-safe
   const int text_center_y = s_bounds.size.h / 2;
   const int date_h = 30;
-  const int time_h = 58;
-  const int info_h = 30;
+  const int time_h = 62;
+  const int info_h = 34;
   const int block_gap = compact_layout ? 7 : 10;
   const int text_y_offset = compact_layout ? -12 : 0;
 
@@ -505,7 +505,7 @@ static void main_window_load(Window *window){
   s_date_layer = text_layer_create(GRect(0, date_y, s_bounds.size.w, date_h));
   text_layer_set_background_color(s_date_layer, GColorClear);
   text_layer_set_text_color(s_date_layer, GColorWhite);
-  text_layer_set_font(s_date_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+  text_layer_set_font(s_date_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
   text_layer_set_text_alignment(s_date_layer, GTextAlignmentCenter);
   layer_add_child(root, text_layer_get_layer(s_date_layer));
 
@@ -519,7 +519,7 @@ static void main_window_load(Window *window){
   s_info_layer = text_layer_create(GRect(0, info_y, s_bounds.size.w, info_h));
   text_layer_set_background_color(s_info_layer, GColorClear);
   text_layer_set_text_color(s_info_layer, GColorWhite);
-  text_layer_set_font(s_info_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+  text_layer_set_font(s_info_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
   text_layer_set_text_alignment(s_info_layer, GTextAlignmentCenter);
   text_layer_set_text(s_info_layer, "—°  UV —");
   layer_add_child(root, text_layer_get_layer(s_info_layer));

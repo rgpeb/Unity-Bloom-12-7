@@ -14,7 +14,8 @@
     "chalk",
     "diorite",
     "emery",
-    "gabbro"
+    "gabbro",
+    "flint"
   ],
   "capabilities": [
     "location"
