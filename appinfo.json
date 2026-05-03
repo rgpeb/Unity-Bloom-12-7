@@ -9,8 +9,11 @@
     "watchface": true
   },
   "targetPlatforms": [
-    "emery",
+    "aplite",
+    "basalt",
     "chalk",
+    "diorite",
+    "emery",
     "gabbro"
   ],
   "capabilities": [
@@ -18,7 +21,8 @@
   ],
   "appKeys": {
     "TEMP": 1,
-    "UVI": 2
+    "UVI": 2,
+    "TIME24": 3
   },
   "resources": {
     "media": [

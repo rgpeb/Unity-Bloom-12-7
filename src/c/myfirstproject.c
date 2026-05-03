@@ -6,6 +6,7 @@
 static void generate_sprites(void);
 static void light_off_cb(void *ctx);
 static void light_on_now(void);
+static void refresh_time_date(void);
 
 /*** Config (targets) ***/
 #define TARGET_SPRITES        8    // aim for 8
@@ -58,6 +59,8 @@ static int    s_placed_count = 0;
 static GRect  s_bounds;
 
 static AppTimer *s_off_timer = NULL;
+static bool s_use_24h = false;
+#define PERSIST_KEY_USE_24H  100
 
 /*** “no-repeat” memory ***/
 static GRect s_prev_frames[TARGET_SPRITES];
@@ -444,7 +447,7 @@ static void refresh_time_date(void){
 
   static char s_time_buf[8];
 
-  if (clock_is_24h_style()) {
+  if (s_use_24h) {
     // 24h, space-padded hour (e.g., " 9:05")
     strftime(s_time_buf, sizeof(s_time_buf), "%k:%M", t);
   } else {
@@ -472,8 +475,14 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed){
 static void inbox_received_cb(DictionaryIterator *iter, void *ctx) {
   Tuple *t_temp = dict_find(iter, MESSAGE_KEY_TEMP);
   Tuple *t_uvi  = dict_find(iter, MESSAGE_KEY_UVI);
+  Tuple *t_time24 = dict_find(iter, MESSAGE_KEY_TIME24);
   if(t_temp) snprintf(s_temp_buf, sizeof(s_temp_buf), "%ld", t_temp->value->int32);
   if(t_uvi)  snprintf(s_uvi_buf,  sizeof(s_uvi_buf),  "%ld", t_uvi->value->int32);
+  if(t_time24){
+    s_use_24h = t_time24->value->int32 ? true : false;
+    persist_write_bool(PERSIST_KEY_USE_24H, s_use_24h);
+    refresh_time_date();
+  }
   refresh_info_line();
 }
 static void inbox_dropped_cb(AppMessageResult reason, void *ctx) { (void)reason;(void)ctx; }
@@ -489,24 +498,24 @@ static void main_window_load(Window *window){
   layer_set_update_proc(s_canvas, layer_update);
   layer_add_child(root, s_canvas);
 
-  s_date_layer = text_layer_create(GRect(0, s_bounds.size.h/2 - 54, s_bounds.size.w, 28));
+  s_date_layer = text_layer_create(GRect(0, s_bounds.size.h/2 - 60, s_bounds.size.w, 34));
   text_layer_set_background_color(s_date_layer, GColorClear);
   text_layer_set_text_color(s_date_layer, GColorWhite);
-  text_layer_set_font(s_date_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+  text_layer_set_font(s_date_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
   text_layer_set_text_alignment(s_date_layer, GTextAlignmentCenter);
   layer_add_child(root, text_layer_get_layer(s_date_layer));
 
-  s_time_layer = text_layer_create(GRect(0, s_bounds.size.h/2 - 22, s_bounds.size.w, 44));
+  s_time_layer = text_layer_create(GRect(0, s_bounds.size.h/2 - 28, s_bounds.size.w, 52));
   text_layer_set_background_color(s_time_layer, GColorClear);
   text_layer_set_text_color(s_time_layer, GColorWhite);
   text_layer_set_font(s_time_layer, fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
   layer_add_child(root, text_layer_get_layer(s_time_layer));
 
-  s_info_layer = text_layer_create(GRect(0, s_bounds.size.h/2 + 38, s_bounds.size.w, 26));
+  s_info_layer = text_layer_create(GRect(0, s_bounds.size.h/2 + 42, s_bounds.size.w, 30));
   text_layer_set_background_color(s_info_layer, GColorClear);
   text_layer_set_text_color(s_info_layer, GColorWhite);
-  text_layer_set_font(s_info_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
+  text_layer_set_font(s_info_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
   text_layer_set_text_alignment(s_info_layer, GTextAlignmentCenter);
   text_layer_set_text(s_info_layer, "—°  UV —");
   layer_add_child(root, text_layer_get_layer(s_info_layer));
@@ -533,6 +542,7 @@ static void main_window_unload(Window *window){
 static void init(void){
   s_main_window = window_create();
   window_set_background_color(s_main_window, GColorBlack);
+  s_use_24h = persist_exists(PERSIST_KEY_USE_24H) ? persist_read_bool(PERSIST_KEY_USE_24H) : clock_is_24h_style();
   window_set_window_handlers(s_main_window, (WindowHandlers){ .load = main_window_load, .unload = main_window_unload });
   window_stack_push(s_main_window, true);
 
